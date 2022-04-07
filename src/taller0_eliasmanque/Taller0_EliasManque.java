@@ -2,26 +2,27 @@ package taller0_eliasmanque;
 
 import java.io.*;
 import java.util.Scanner;
+
 /**
  *
  * @author Elias M. Olivares
  */
 public class Taller0_EliasManque {
-    
-    public static int buscar (String[] listaABuscar, String usuario) {
-        for (int i = 0; i< listaABuscar.length;i++){
+
+    public static int buscar(String[] listaABuscar, String usuario) {
+        for (int i = 0; i < listaABuscar.length; i++) {
             String valor = listaABuscar[i];
             System.out.println(valor);
-            if (valor.equals(usuario)){
+            if (valor.equals(usuario)) {
                 return 1;
+            } else if (valor.equals(null)) {
+                return i + 1;
             }
-            else if(valor.equals(null)) {
-                return i+1;
-            }
-        }return 0 ;
+        }
+        return 0;
     }
-    
-    public static void main(String[] args) throws FileNotFoundException{
+
+    public static void main(String[] args) throws FileNotFoundException {
         // Lectura de Archivos
         File fileJugadores = new File("Jugadores.txt");
         Scanner archJugadores = new Scanner(fileJugadores);
@@ -46,10 +47,10 @@ public class Taller0_EliasManque {
             int puntosVida = Integer.parseInt(partes[2]), ataque = Integer.parseInt(partes[3]),
                     defensa = Integer.parseInt(partes[4]), velocidad = Integer.parseInt(partes[5]),
                     numHechizos = Integer.parseInt(partes[6]), exp = Integer.parseInt(partes[7]);
-            
+
             System.out.println(System.getProperty("user.dir"));
         }
         archJugadores.close();
     }
-    
+
 }
