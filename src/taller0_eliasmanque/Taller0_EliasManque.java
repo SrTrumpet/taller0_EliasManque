@@ -8,6 +8,19 @@ import java.util.Scanner;
  */
 public class Taller0_EliasManque {
     
+    public static int buscar (String[] listaABuscar, String usuario) {
+        for (int i = 0; i< listaABuscar.length;i++){
+            String valor = listaABuscar[i];
+            System.out.println(valor);
+            if (valor.equals(usuario)){
+                return 1;
+            }
+            else if(valor.equals(null)) {
+                return i+1;
+            }
+        }return 0 ;
+    }
+    
     public static void main(String[] args) throws FileNotFoundException{
         // Lectura de Archivos
         File fileJugadores = new File("Jugadores.txt");
