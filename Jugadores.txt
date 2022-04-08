@@ -1,5 +1,5 @@
 Memekaizar,pato123,10,10,10,10,2,1500
-Memekaizar,pato123,14,10,96,10,2,1500
-Memekaizar,pato123,19,142,10,10,2,1500
-Memekaizar,pato123,20,10,10,10,2,1500
-Memekaizar,pato123,30,10,0,10,2,1500
+elpana,pato123,14,10,96,10,2,1500
+monicaGalindo,pato123,19,142,10,10,2,1500
+aRoss,pato123,20,10,10,10,2,1500
+junaiter,pato123,30,10,0,10,2,1500
