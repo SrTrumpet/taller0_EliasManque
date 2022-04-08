@@ -6,43 +6,54 @@ import java.util.Scanner;
 
 public class Ideas {
 
+    // #################################################################################################
     public static void admin() throws FileNotFoundException {
         System.out.println("Bienvenido al menu de ADMIN");
     }
 
-    public static void usuario(String usuario, String pass) throws FileNotFoundException {
-
+    // #################################################################################################
+    public static void usuarioBusqueda(String usuario, String pass) throws FileNotFoundException {
         // Si no encontramos al usuario debemos llevarlo a registrarlo sino ya podremos
         // ingresar al menu
         File file = new File("Jugadores.txt");
-        boolean encontrado;
         Scanner arch = new Scanner(file);
-
         // Este while sera de busqueda
+        Boolean encontrado = false;
         while (arch.hasNext()) {
             String[] partes = arch.next().split(",");
             String user = partes[0], contraseña = partes[1];
-            System.out.println(user + " " + contraseña);
-
             // 4 posibles causas
             // Usuario encontrado y Contraseña coinciden
-            if ((user.equals(usuario)) && (contraseña.equals(pass))) {
+            if (user.equals(usuario)) {
                 System.out.println("Usuario encotrado");
-                break;
+                encontrado = true;
+                if (contraseña.equals(pass)) {
+                    System.out.println("Acceso correcto");
+                    menuUsuario();
+                    break;
+                } else {
+                    System.out.println("Contraseña Incorrecta");
+                    break;
+                }
                 // Usuario encontrado y Contraseña no coincide
-            } else if ((user.equals(usuario)) || (contraseña.equals(pass))) {
-                System.out.println("Contraseña o usuario incorrecto");
-                break;
-            } else {
-                continue;
             }
         }
-        System.out.println("Bienvenido al menu de Usuario");
+        if (!encontrado){
+            System.out.println("Llegaste alfin");
+            Registro();
+        }
         arch.close();
     }
 
+    // #################################################################################################
     public static void Registro() throws FileNotFoundException {
         System.out.println("Panita no bitches?");
+    }
+
+    // #################################################################################################
+
+    public static void menuUsuario() {
+
     }
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -82,9 +93,10 @@ public class Ideas {
                 }
                 // USUARIO
                 else {
-                    usuario(user, password);
+                    usuarioBusqueda(user, password);
                     System.out.println();
                 }
+                System.out.println("Desea intentarno denuevo? SI/NO");
                 confir = leer.next();
                 confir = confir.toUpperCase();
             }
