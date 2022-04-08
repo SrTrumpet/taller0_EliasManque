@@ -1,4 +1,4 @@
-package Taller0;
+package taller0_eliasmanque;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,21 +25,25 @@ public class Ideas {
             // 4 posibles causas
             // Usuario encontrado y Contraseña coinciden
             if (user.equals(usuario)) {
-                System.out.println("Usuario encotrado");
+                System.out.println("");
+                System.out.println("Usuario encontrado");
+                System.out.println("");
                 encontrado = true;
                 if (contraseña.equals(pass)) {
                     System.out.println("Acceso correcto");
                     menuUsuario();
                     break;
                 } else {
-                    System.out.println("Contraseña Incorrecta");
+                    System.out.println("[Contraseña Incorrecta!!]");
+                    System.out.println("");
+                    System.out.println("########################################################");
                     break;
                 }
                 // Usuario encontrado y Contraseña no coincide
             }
         }
-        if (!encontrado){
-            System.out.println("Llegaste alfin");
+        if (!encontrado) {
+            System.out.println("Usuario no encontrado");
             Registro();
         }
         arch.close();
@@ -47,13 +51,26 @@ public class Ideas {
 
     // #################################################################################################
     public static void Registro() throws FileNotFoundException {
-        System.out.println("Panita no bitches?");
+        System.out.print("Desea registrarce? SI/NO ===> ");
+        Scanner lectura = new Scanner(System.in);
+        String confir = lectura.next();
+        confir = confir.toUpperCase();
+        while (!(confir.equals("SI")) && !(confir.equals("NO"))) {
+            System.out.println("Ingrese un valor valido");
+            System.out.print("Desea registrarce? SI/NO ===> ");
+            confir = lectura.next();
+            System.out.println("");
+            confir = confir.toUpperCase();
+        }
+        if (confir.equals("SI")) {
+            System.out.println("WENARDOOO");
+            System.out.println("tabien");
+            lectura.close();
+        }
     }
 
     // #################################################################################################
-
-    public static void menuUsuario() {
-
+    public static void menuUsuario() throws FileNotFoundException {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -64,15 +81,14 @@ public class Ideas {
 
         // Inicio de programa
         System.out.println("########################################################");
-        System.out.println("Desea iniciar el programa? SI/NO");
-        String confir = leer.next();
-        System.out.println("");
+        System.out.print("Desea iniciar el programa? SI/NO  ===> ");
+        String confir = leer.nextLine();
         System.out.println("########################################################");
         confir = confir.toUpperCase();
 
         while (!(confir.equals("SI")) && !(confir.equals("NO"))) {
             System.out.println("Ingrese un valor valido");
-            System.out.println("Desea iniciar el programa? SI/NO");
+            System.out.println("Desea iniciar el programa? SI/NO  ===> ");
             confir = leer.next();
             System.out.println("");
             System.out.println("########################################################");
@@ -82,10 +98,8 @@ public class Ideas {
             while (confir.equals("SI")) {
                 System.out.print("Ingrese su nombre de Usuario ===> ");
                 user = leer.next();
-                System.out.println("");
-                System.out.print("Ingrese su nombre de Contraseña ===> ");
+                System.out.print("Ingrese su Contraseña ===> ");
                 password = leer.next();
-
                 // Division entre Usuario, Admin y Registro
                 // ADMIN
                 if (user.equals("Admin") && password.equals("Patata19")) {
@@ -94,16 +108,14 @@ public class Ideas {
                 // USUARIO
                 else {
                     usuarioBusqueda(user, password);
-                    System.out.println();
                 }
-                System.out.println("Desea intentarno denuevo? SI/NO");
+                System.out.println("########################################################");
+                System.out.print("Desea intentarno denuevo? SI/NO ");
                 confir = leer.next();
                 confir = confir.toUpperCase();
             }
         } else {
-            System.out.println("""
-                    Porque no? >:c
-                    """);
+            System.out.println("Porque no? >:c");
         }
         leer.close();
     }
