@@ -2,7 +2,7 @@ package taller0_eliasmanque;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Ideas {
 
@@ -42,30 +42,31 @@ public class Ideas {
                 // Usuario encontrado y Contraseña no coincide
             }
         }
+        arch.close();
         if (!encontrado) {
             System.out.println("Usuario no encontrado");
             Registro();
         }
-        arch.close();
     }
 
     // #################################################################################################
     public static void Registro() throws FileNotFoundException {
         System.out.print("Desea registrarce? SI/NO ===> ");
+        @SuppressWarnings("resource")
         Scanner lectura = new Scanner(System.in);
-        String confir = lectura.next();
-        confir = confir.toUpperCase();
-        while (!(confir.equals("SI")) && !(confir.equals("NO"))) {
+        String confirmacion = lectura.next();
+        confirmacion = confirmacion.toUpperCase();
+
+        while (!(confirmacion.equals("SI")) && !(confirmacion.equals("NO"))) {
             System.out.println("Ingrese un valor valido");
             System.out.print("Desea registrarce? SI/NO ===> ");
-            confir = lectura.next();
+            confirmacion = lectura.next();
             System.out.println("");
-            confir = confir.toUpperCase();
+            confirmacion = confirmacion.toUpperCase();
         }
-        if (confir.equals("SI")) {
+        if (confirmacion.equals("SI")) {
             System.out.println("WENARDOOO");
             System.out.println("tabien");
-            lectura.close();
         }
     }
 
