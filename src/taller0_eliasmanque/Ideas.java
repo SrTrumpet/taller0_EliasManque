@@ -1,7 +1,6 @@
 package taller0_eliasmanque;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.*;
 
 public class Ideas {
@@ -9,7 +8,76 @@ public class Ideas {
     // #################################################################################################//admin//
     public static void admin() throws FileNotFoundException {
         System.out.println("Bienvenido al menu de ADMIN");
-        
+
+        boolean ingresoMenu = true;
+        String ingreso;
+        String opcion;
+        @SuppressWarnings("resource") // Se usa solo para retirar el aviso del Scanner
+        Scanner leer = new Scanner(System.in);
+
+        while (ingresoMenu) {
+            // 4 opciones disponibles para el admin
+            System.out.print("""
+                    Opciones disponibles:
+
+                    A) Eliminar Jugadores
+                    B) Agregar Enemigos
+                    C) Agregar Hechizos
+                    D) Ver las estadisticas de los Jugadores
+
+                    Ingrese su opcion ===>  """);
+            opcion = leer.next();
+            opcion = opcion.toUpperCase();
+            if (opcion.equals("A")) {// Eliminar Jugadores
+                System.out.println("a");
+
+            } else if (opcion.equals("B")) {// Agregar Enemigos
+                System.out.println("b");
+
+            } else if (opcion.equals("C")) {// Agregar Hechizos
+                System.out.println("c");
+
+            } else if (opcion.equals("D")) {// Ver las estadisticas de los Jugadores
+                System.out.println(" ");
+                System.out.println("Lista de las estaisticas de los jugadores: ");
+                estadisticasJugadores();
+            }
+            System.out.println("Desea salir del menu de admin? SI/NO");
+            ingreso = leer.next();
+            ingreso = ingreso.toUpperCase();
+            if (ingreso.equals("SI")) {
+                ingresoMenu = false;
+            } else if (ingreso.equals("NO")) {
+                ingresoMenu = true;
+            } else {
+                break;
+            }
+
+        }
+    }
+
+    // #################################################################################################//STDOUT
+    // Estadisticas//
+    public static void estadisticasJugadores() throws FileNotFoundException {
+        File file = new File("Jugadores.txt");
+        Scanner arch = new Scanner(file);
+        while (arch.hasNext()) {
+            String[] partes = arch.next().split(",");
+            String nombreUsuario = partes[0], ptosVida = partes[2], ataque = partes[3], defensa = partes[4],
+                    velocidad = partes[5], numHechizos = partes[6], exp = partes[7];
+            System.out.println("""
+                    
+                    ####################
+                    Usuario: %s
+                    ####################
+                    Puntos de Vida: %s
+                    Ataque: %s
+                    Defensa: %s
+                    Velocidad: %s
+                    Numero de Hechizos: %s
+                    Experiencia: %s""".formatted(nombreUsuario, ptosVida,ataque,defensa,velocidad,numHechizos,exp));
+        }
+        arch.close();
     }
 
     // #################################################################################################//usuarioBusqueda//
@@ -75,6 +143,7 @@ public class Ideas {
     public static void menuUsuario() throws FileNotFoundException {
         System.out.println("Wenas wn");
     }
+
     // #################################################################################################//main//
     public static void main(String[] args) throws FileNotFoundException {
         Scanner leer = new Scanner(System.in);
@@ -113,7 +182,7 @@ public class Ideas {
                     usuarioBusqueda(user, password);
                 }
                 System.out.println("########################################################");
-                System.out.print("Desea intentarno denuevo? SI/NO ");
+                System.out.print("Desea iniciar nuevamente el programa? SI/NO ");
                 confir = leer.next();
                 confir = confir.toUpperCase();
             }
