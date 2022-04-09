@@ -6,12 +6,13 @@ import java.util.*;
 
 public class Ideas {
 
-    // #################################################################################################
+    // #################################################################################################//admin//
     public static void admin() throws FileNotFoundException {
         System.out.println("Bienvenido al menu de ADMIN");
+        
     }
 
-    // #################################################################################################
+    // #################################################################################################//usuarioBusqueda//
     public static void usuarioBusqueda(String usuario, String pass) throws FileNotFoundException {
         // Si no encontramos al usuario debemos llevarlo a registrarlo sino ya podremos
         // ingresar al menu
@@ -49,7 +50,7 @@ public class Ideas {
         }
     }
 
-    // #################################################################################################
+    // #################################################################################################//Registro//
     public static void Registro() throws FileNotFoundException {
         System.out.print("Desea registrarce? SI/NO ===> ");
         @SuppressWarnings("resource")
@@ -70,10 +71,11 @@ public class Ideas {
         }
     }
 
-    // #################################################################################################
+    // #################################################################################################//menuUsuario//
     public static void menuUsuario() throws FileNotFoundException {
+        System.out.println("Wenas wn");
     }
-
+    // #################################################################################################//main//
     public static void main(String[] args) throws FileNotFoundException {
         Scanner leer = new Scanner(System.in);
 
