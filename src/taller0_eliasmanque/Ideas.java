@@ -56,8 +56,7 @@ public class Ideas {
         }
     }
 
-    // #################################################################################################//STDOUT
-    // Estadisticas//
+    // ##########################################################################################//SYS.OUT Estadisticas//OK
     public static void estadisticasJugadores() throws FileNotFoundException {
         File file = new File("Jugadores.txt");
         Scanner arch = new Scanner(file);
@@ -66,7 +65,6 @@ public class Ideas {
             String nombreUsuario = partes[0], ptosVida = partes[2], ataque = partes[3], defensa = partes[4],
                     velocidad = partes[5], numHechizos = partes[6], exp = partes[7];
             System.out.println("""
-                    
                     ####################
                     Usuario: %s
                     ####################
@@ -75,7 +73,8 @@ public class Ideas {
                     Defensa: %s
                     Velocidad: %s
                     Numero de Hechizos: %s
-                    Experiencia: %s""".formatted(nombreUsuario, ptosVida,ataque,defensa,velocidad,numHechizos,exp));
+                    Experiencia: %s""".formatted(nombreUsuario, ptosVida, ataque, defensa, velocidad, numHechizos,
+                    exp));
         }
         arch.close();
     }
