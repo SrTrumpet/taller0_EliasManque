@@ -1,12 +1,13 @@
 package taller0_eliasmanque;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.*;
 
 public class Ideas {
 
     // #################################################################################################//admin//
-    public static void admin() throws FileNotFoundException {
+    public static void admin() throws IOException {
         System.out.println("Bienvenido al menu de ADMIN");
 
         boolean ingresoMenu = true;
@@ -35,11 +36,11 @@ public class Ideas {
                 System.out.println("b");
 
             } else if (opcion.equals("C")) {// Agregar Hechizos
-                System.out.println("c");
+                agregarHechizos();
 
             } else if (opcion.equals("D")) {// Ver las estadisticas de los Jugadores
                 System.out.println(" ");
-                System.out.println("Lista de las estaisticas de los jugadores: ");
+                System.out.println("Lista de las estadisticas de los jugadores: ");
                 estadisticasJugadores();
             }
             System.out.println("Desea salir del menu de admin? SI/NO");
@@ -55,7 +56,32 @@ public class Ideas {
 
         }
     }
-
+    // ##########################################################################################//SYS.OUT Agregar Hechizos
+    public static void agregarHechizos() throws IOException {
+        Scanner leer = new Scanner(System.in);
+        File file = new File("Hechizos.txt");
+        boolean confirmacion = true;
+        String hechizo, poderHechizo,opcion;
+        while(confirmacion){
+            System.out.print("Ingrese el nombre del hechizo ===>");
+            hechizo = leer.next();
+            System.out.print("Ingrese el poder del hechizo ===>");
+            poderHechizo = leer.next();
+            BufferedWriter archHechizos = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true),"utf-8"));
+            archHechizos.write("\n");
+            archHechizos.write(hechizo+","+poderHechizo);
+            System.out.print("Desea agregar otro hechizo? SI/NO ===> ");
+            opcion = leer.next();
+            opcion = opcion.toUpperCase();
+            if (opcion.equals("SI")){
+                confirmacion = true;
+                archHechizos.close();
+            } else if (opcion.equals("NO")){
+                confirmacion = false;
+                archHechizos.close();
+            }
+        }
+    }
     // ##########################################################################################//SYS.OUT Estadisticas//OK
     public static void estadisticasJugadores() throws FileNotFoundException {
         File file = new File("Jugadores.txt");
@@ -65,6 +91,7 @@ public class Ideas {
             String nombreUsuario = partes[0], ptosVida = partes[2], ataque = partes[3], defensa = partes[4],
                     velocidad = partes[5], numHechizos = partes[6], exp = partes[7];
             System.out.println("""
+
                     ####################
                     Usuario: %s
                     ####################
@@ -144,7 +171,7 @@ public class Ideas {
     }
 
     // #################################################################################################//main//
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         Scanner leer = new Scanner(System.in);
 
         // Variables a Usar
