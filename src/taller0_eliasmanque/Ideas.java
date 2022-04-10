@@ -104,7 +104,8 @@ public class Ideas {
         }
     }
 
-    // ##########################################################################################//SYS.OUT // Agregar Hechizos
+    // ##########################################################################################//SYS.OUT
+    // // Agregar Hechizos
     public static void agregarHechizos() throws IOException {
         @SuppressWarnings("resource") // Se usa solo para retirar el aviso del Scanner
         Scanner leer = new Scanner(System.in);
@@ -152,7 +153,8 @@ public class Ideas {
                     Defensa: %s
                     Velocidad: %s
                     Numero de Hechizos: %s
-                    Experiencia: %s""".formatted(nombreUsuario, ptosVida, ataque, defensa, velocidad, numHechizos,exp));
+                    Experiencia: %s""".formatted(nombreUsuario, ptosVida, ataque, defensa, velocidad, numHechizos,
+                    exp));
         }
         arch.close();
     }
@@ -177,7 +179,8 @@ public class Ideas {
                 encontrado = true;
                 if (contraseña.equals(pass)) {
                     System.out.println("Acceso correcto");
-                    menuUsuario();
+                    System.out.println("");
+                    menuUsuario(user);
                     break;
                 } else {
                     System.out.println("[Contraseña Incorrecta!!]");
@@ -195,7 +198,7 @@ public class Ideas {
         }
     }
 
-    // #################################################################################################//Registro//
+    // #################################################################################################//Registro//OK
     public static void Registro() throws IOException {
         System.out.print("Desea registrarce? SI/NO ===> ");
         @SuppressWarnings("resource")
@@ -215,25 +218,26 @@ public class Ideas {
             System.out.print("Ingrese un nombre de usuario ===> ");
             String user = lectura.next();
             boolean whileError = true;
-            while(whileError){
+            while (whileError) {
                 whileError = repetido(user);
-                if (whileError){
+                if (whileError) {
                     System.out.println("Usuario ya existe");
                     System.out.print("Ingrese nuevamente ===> ");
                     user = lectura.next();
-                }else{
+                } else {
                     System.out.println("Usuario Disponible");
                     System.out.print("Ingrese su contraseña ===> ");
                     String pass = lectura.next();
                     BufferedWriter archJugadores = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)));
                     archJugadores.write("\n");
-                    archJugadores.write(user + "," + pass +",10,10,10,10,0,0");
+                    archJugadores.write(user + "," + pass + ",10,10,10,10,0,0");
                     archJugadores.close();
-                    menuUsuario();
+                    menuUsuario(user);
                 }
             }
         }
     }
+
     // #################################################################################################//repetido//
     public static boolean repetido(String user) throws FileNotFoundException {
         File file = new File("Jugadores.txt");
@@ -243,24 +247,66 @@ public class Ideas {
         while (arch.hasNext()) {
             String[] partes = arch.next().split(",");
             String name = partes[0];
-            if (name.equals(user)){
+            if (name.equals(user)) {
                 return true;
             }
         }
         return false;
     }
+
     // #################################################################################################//menuUsuario//
-    public static void menuUsuario() throws FileNotFoundException {
-        System.out.println("Wenas wn");
+    public static void menuUsuario(String user) throws FileNotFoundException {
+        Scanner leer = new Scanner(System.in);
+        String opcion;
+
+
+        System.out.println("Bienvenido "+"["+user+"]");
+        System.out.println("");
+        System.out.println("Opciones del menu de usuario: ");
+        System.out.print("""
+                A)Inicio del juego
+                B)Aprender hechizo
+                C)Ver estadisticas de un Jugador
+                D)Ver estadisticas de Hechizo
+                E)Ver ranking de jugadores con mas Exp
+                F)Salir
+
+                Ingrese su opcion ===> """);
+        opcion = leer.next();
+        opcion = opcion.toUpperCase();
+        if(opcion.equals("A")){
+            System.out.print("""
+                Ingrese modo de juego
+
+                1 ==> JcE
+                2 ==> JcJ
+
+                Ingrese su opcion ===> 
+                """);
+            int modoJuego = leer.nextInt();
+        }
+        else if(opcion.equals("B")){
+
+        }
+        else if(opcion.equals("C")){
+
+        }
+        else if(opcion.equals("D")){
+
+        }
+        else if(opcion.equals("E")){
+            
+        }
+        else if(opcion.equals("F")){
+            System.out.println("Saliendo del menu jugador ... ");
+        }
     }
 
     // #################################################################################################//main//
     public static void main(String[] args) throws IOException {
         Scanner leer = new Scanner(System.in);
-
         // Variables a Usar
         String user, password;
-
         // Inicio de programa
         System.out.println("########################################################");
         System.out.print("Desea iniciar el programa? SI/NO  ===> ");
