@@ -3,7 +3,6 @@ package taller0_eliasmanque;
 import java.io.*;
 import java.util.*;
 
-
 public class Ideas {
 
     // #################################################################################################//admin//
@@ -32,13 +31,15 @@ public class Ideas {
             if (opcion.equals("A")) {// Eliminar Jugadores
                 System.out.println("a");
 
-            } else if (opcion.equals("B")) {// Agregar Enemigos
-                System.out.println("b");
+            } else if (opcion.equals("B")) {// Agregar Enemigos OK
+                System.out.println(" ");
+                agregarEnemigos();
 
-            } else if (opcion.equals("C")) {// Agregar Hechizos
+            } else if (opcion.equals("C")) {// Agregar Hechizos OK
+                System.out.println(" ");
                 agregarHechizos();
 
-            } else if (opcion.equals("D")) {// Ver las estadisticas de los Jugadores
+            } else if (opcion.equals("D")) {// Ver las estadisticas de los Jugadores OK
                 System.out.println(" ");
                 System.out.println("Lista de las estadisticas de los jugadores: ");
                 estadisticasJugadores();
@@ -58,10 +59,52 @@ public class Ideas {
     }
 
     // ##########################################################################################//SYS.OUT
+    // //Agregar Enemigos
+    public static void agregarEnemigos() throws IOException {
+        @SuppressWarnings("resource") // Se usa solo para retirar el aviso del Scanner
+        Scanner leer = new Scanner(System.in);
+        File file = new File("Enemigos.txt");
+        boolean confirmacion = true;
+        String nomEnemigo, hp, ataque, clase, velocidad, opcion;
+        while (confirmacion) {
+            System.out.print("Ingrese el nombre del enemigo ===> ");
+            nomEnemigo = leer.next();
+
+            System.out.print("Ingrese el hp del enemigo ===> ");
+            hp = leer.next();
+
+            System.out.print("Ingrese el poder de ataque ===> ");
+            ataque = leer.next();
+
+            System.out.print("Ingrese la clase del enemigo del enemigo {S,A,B,C,F} ===> ");
+            clase = leer.next();
+            clase = clase.toUpperCase();
+
+            System.out.print("Ingrese la velocidad del enemigo ===>");
+            velocidad = leer.next();
+
+            BufferedWriter archEnemigo = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)));
+            archEnemigo.write("\n");
+            archEnemigo.write(nomEnemigo + "," + hp + "," + ataque + "," + clase + "," + velocidad);
+            System.out.print("Desea agregar otro enemigo? SI/NO ===> ");
+            opcion = leer.next();
+            opcion = opcion.toUpperCase();
+            if (opcion.equals("SI")) {
+                confirmacion = true;
+                archEnemigo.close();
+            } else if (opcion.equals("NO")) {
+                confirmacion = false;
+                archEnemigo.close();
+            }
+        }
+
+    }
+
+    // ##########################################################################################//SYS.OUT
     // Agregar Hechizos
     public static void agregarHechizos() throws IOException {
         @SuppressWarnings("resource") // Se usa solo para retirar el aviso del Scanner
-        Scanner leer = new Scanner(System.in,"US-ASCII");
+        Scanner leer = new Scanner(System.in);
         File file = new File("Hechizos.txt");
         boolean confirmacion = true;
         String hechizo, poderHechizo, opcion;
