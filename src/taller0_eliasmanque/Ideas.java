@@ -54,8 +54,13 @@ public class Ideas {
             } else {
                 break;
             }
-
         }
+    }
+
+    // ##########################################################################################//Eliminar
+    // Jugador
+    public static void eliminarJugador() {
+
     }
 
     // ##########################################################################################//SYS.OUT
@@ -97,7 +102,6 @@ public class Ideas {
                 archEnemigo.close();
             }
         }
-
     }
 
     // ##########################################################################################//SYS.OUT
@@ -149,8 +153,7 @@ public class Ideas {
                     Defensa: %s
                     Velocidad: %s
                     Numero de Hechizos: %s
-                    Experiencia: %s""".formatted(nombreUsuario, ptosVida, ataque, defensa, velocidad, numHechizos,
-                    exp));
+                    Experiencia: %s""".formatted(nombreUsuario, ptosVida, ataque, defensa, velocidad, numHechizos,exp));
         }
         arch.close();
     }
