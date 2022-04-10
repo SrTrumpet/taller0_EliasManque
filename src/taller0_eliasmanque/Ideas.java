@@ -1,4 +1,4 @@
-package Taller0;
+package taller0_eliasmanque;
 
 import java.io.*;
 import java.util.*;
