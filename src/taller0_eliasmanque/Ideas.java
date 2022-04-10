@@ -104,8 +104,7 @@ public class Ideas {
         }
     }
 
-    // ##########################################################################################//SYS.OUT
-    // Agregar Hechizos
+    // ##########################################################################################//SYS.OUT // Agregar Hechizos
     public static void agregarHechizos() throws IOException {
         @SuppressWarnings("resource") // Se usa solo para retirar el aviso del Scanner
         Scanner leer = new Scanner(System.in);
@@ -159,7 +158,7 @@ public class Ideas {
     }
 
     // #################################################################################################//usuarioBusqueda//
-    public static void usuarioBusqueda(String usuario, String pass) throws FileNotFoundException {
+    public static void usuarioBusqueda(String usuario, String pass) throws IOException {
         // Si no encontramos al usuario debemos llevarlo a registrarlo sino ya podremos
         // ingresar al menu
         File file = new File("Jugadores.txt");
@@ -197,10 +196,11 @@ public class Ideas {
     }
 
     // #################################################################################################//Registro//
-    public static void Registro() throws FileNotFoundException {
+    public static void Registro() throws IOException {
         System.out.print("Desea registrarce? SI/NO ===> ");
         @SuppressWarnings("resource")
         Scanner lectura = new Scanner(System.in);
+        File file = new File("Jugadores.txt");
         String confirmacion = lectura.next();
         confirmacion = confirmacion.toUpperCase();
 
@@ -212,11 +212,43 @@ public class Ideas {
             confirmacion = confirmacion.toUpperCase();
         }
         if (confirmacion.equals("SI")) {
-            System.out.println("WENARDOOO");
-            System.out.println("tabien");
+            System.out.print("Ingrese un nombre de usuario ===> ");
+            String user = lectura.next();
+            boolean whileError = true;
+            while(whileError){
+                whileError = repetido(user);
+                if (whileError){
+                    System.out.println("Usuario ya existe");
+                    System.out.print("Ingrese nuevamente ===> ");
+                    user = lectura.next();
+                }else{
+                    System.out.println("Usuario Disponible");
+                    System.out.print("Ingrese su contraseña ===> ");
+                    String pass = lectura.next();
+                    BufferedWriter archJugadores = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)));
+                    archJugadores.write("\n");
+                    archJugadores.write(user + "," + pass +",10,10,10,10,0,0");
+                    archJugadores.close();
+                    menuUsuario();
+                }
+            }
         }
     }
-
+    // #################################################################################################//repetido//
+    public static boolean repetido(String user) throws FileNotFoundException {
+        File file = new File("Jugadores.txt");
+        System.out.println("########################################################");
+        @SuppressWarnings("resource")
+        Scanner arch = new Scanner(file);
+        while (arch.hasNext()) {
+            String[] partes = arch.next().split(",");
+            String name = partes[0];
+            if (name.equals(user)){
+                return true;
+            }
+        }
+        return false;
+    }
     // #################################################################################################//menuUsuario//
     public static void menuUsuario() throws FileNotFoundException {
         System.out.println("Wenas wn");
