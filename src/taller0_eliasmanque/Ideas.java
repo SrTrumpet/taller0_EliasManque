@@ -1,8 +1,8 @@
-package taller0_eliasmanque;
+package Taller0;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.util.*;
+
 
 public class Ideas {
 
@@ -56,33 +56,39 @@ public class Ideas {
 
         }
     }
-    // ##########################################################################################//SYS.OUT Agregar Hechizos
+
+    // ##########################################################################################//SYS.OUT
+    // Agregar Hechizos
     public static void agregarHechizos() throws IOException {
-        Scanner leer = new Scanner(System.in);
+        @SuppressWarnings("resource") // Se usa solo para retirar el aviso del Scanner
+        Scanner leer = new Scanner(System.in,"US-ASCII");
         File file = new File("Hechizos.txt");
         boolean confirmacion = true;
-        String hechizo, poderHechizo,opcion;
-        while(confirmacion){
+        String hechizo, poderHechizo, opcion;
+        while (confirmacion) {
             System.out.print("Ingrese el nombre del hechizo ===>");
             hechizo = leer.next();
             System.out.print("Ingrese el poder del hechizo ===>");
             poderHechizo = leer.next();
-            BufferedWriter archHechizos = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true),"utf-8"));
+            System.out.println("ENTRADA    " + hechizo);
+            BufferedWriter archHechizos = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)));
             archHechizos.write("\n");
-            archHechizos.write(hechizo+","+poderHechizo);
+            archHechizos.write(hechizo + "," + poderHechizo);
             System.out.print("Desea agregar otro hechizo? SI/NO ===> ");
             opcion = leer.next();
             opcion = opcion.toUpperCase();
-            if (opcion.equals("SI")){
+            if (opcion.equals("SI")) {
                 confirmacion = true;
                 archHechizos.close();
-            } else if (opcion.equals("NO")){
+            } else if (opcion.equals("NO")) {
                 confirmacion = false;
                 archHechizos.close();
             }
         }
     }
-    // ##########################################################################################//SYS.OUT Estadisticas//OK
+
+    // ##########################################################################################//SYS.OUT
+    // Estadisticas//OK
     public static void estadisticasJugadores() throws FileNotFoundException {
         File file = new File("Jugadores.txt");
         Scanner arch = new Scanner(file);
