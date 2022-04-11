@@ -228,7 +228,8 @@ public class Ideas {
                     System.out.println("Usuario Disponible");
                     System.out.print("Ingrese su contraseña ===> ");
                     String pass = lectura.next();
-                    BufferedWriter archJugadores = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)));
+                    BufferedWriter archJugadores = new BufferedWriter(
+                            new OutputStreamWriter(new FileOutputStream(file, true)));
                     archJugadores.write("\n");
                     archJugadores.write(user + "," + pass + ",10,10,10,10,0,0");
                     archJugadores.close();
@@ -238,7 +239,7 @@ public class Ideas {
         }
     }
 
-    // #################################################################################################//repetido//
+    // #################################################################################################//repetido//OK
     public static boolean repetido(String user) throws FileNotFoundException {
         File file = new File("Jugadores.txt");
         System.out.println("########################################################");
@@ -253,16 +254,17 @@ public class Ideas {
         }
         return false;
     }
-    // #################################################################################################//podio//
-    public static void podio( String user) throws FileNotFoundException {
+
+    // #################################################################################################//podio//OK
+    public static void podio(String user) throws FileNotFoundException {
         File file = new File("Jugadores.txt");
         System.out.println("########################################################");
         @SuppressWarnings("resource")
         Scanner arch = new Scanner(file);
         int contador = 0;
         while (arch.hasNext()) {
-            String[] partes = arch.next().split(",");
-            contador ++;
+            arch.next().split(",");
+            contador++;
         }
         int[] listaExp = new int[contador];
         String[] jugadores = new String[contador];
@@ -275,46 +277,87 @@ public class Ideas {
             int exp = Integer.parseInt(partes[7]);
             listaExp[index] = exp;
             jugadores[index] = name;
-            index ++;
+            index++;
         }
-        ordenarLista(listaExp,jugadores,user);
+        arch2.close();
+        ordenarLista(listaExp, jugadores, user);
     }
-    // #################################################################################################//Ordenar Listas//
+
+    // #################################################################################################//Ordenar
+    // Listas//OK
     public static void ordenarLista(int[] experiencia, String[] Jugadores, String user) {
-        for (int i = 1; i < experiencia.length; i++){
-            for (int j = 0; j < experiencia.length - i; j++){
-                if (experiencia[j] > experiencia[j + 1]){
+        for (int i = 1; i < experiencia.length; i++) {
+            for (int j = 0; j < experiencia.length - i; j++) {
+                if (experiencia[j] > experiencia[j + 1]) {
                     int aux = experiencia[j];
-                    experiencia[j] = experiencia[j+1];
-                    experiencia[j+1] = aux;
+                    experiencia[j] = experiencia[j + 1];
+                    experiencia[j + 1] = aux;
 
                     String aux2 = Jugadores[j];
-                    Jugadores[j] = Jugadores[j+1];
-                    Jugadores[j+1] = aux2;
+                    Jugadores[j] = Jugadores[j + 1];
+                    Jugadores[j + 1] = aux2;
                 }
             }
         }
         String[] verificar = new String[10];
-        int podio = 1,indexVerificar = 0;
-        for (int i = experiencia.length-1; i > experiencia.length - 11; i--){
-            System.out.println(podio+" Lugar: "+Jugadores[i]+" con "+experiencia[i]+" de XP ");
+        int podio = 1, indexVerificar = 0;
+        for (int i = experiencia.length - 1; i > experiencia.length - 11; i--) {
+            System.out.println(podio + " Lugar: " + Jugadores[i] + " con " + experiencia[i] + " de XP ");
             verificar[indexVerificar] = Jugadores[podio];
             podio++;
             indexVerificar++;
-        }for (int i = 0; i< 10;i++){
-            if(verificar[i].equals(user)){
+        }
+        for (int i = 0; i < 10; i++) {
+            if (verificar[i].equals(user)) {
                 System.out.println("########################################################");
                 System.out.println("Felicidades estas dentro de los 10 Mejores del Juego!!");
             }
         }
     }
+
+    // #################################################################################################//Busqueda
+    // estadisticas
+    public static void busqeEstadisticas(String user) throws FileNotFoundException {
+        File file = new File("Jugadores.txt");
+        Scanner arch = new Scanner(file);
+        while (arch.hasNext()) {
+            String[] partes = arch.next().split(",");
+            String nombre = partes[0];
+            String  ptosVida    = partes[2], ataque      = partes[3], 
+                    defensa     = partes[4], velocidad   = partes[5],
+                    numHechizos = partes[6], exp         = partes[7];
+            if (user.equals(nombre)) {
+                System.out.println("Usuario encontrado: ");
+                System.out.println("""
+                        ########################################################
+                        Usuario: [%s]
+                        ########################################################
+                        Puntos de Vida      ==> %s
+                        Ataque              ==> %s
+                        Defensa             ==> %s
+                        Velocidad           ==> %s
+                        Numeros de Hechizos ==> %s
+                        EXP                 ==> %s
+                        """.formatted(user,ptosVida,ataque,defensa,velocidad,numHechizos,exp));
+            }
+        }arch.close();
+    }
+
+    // #################################################################################################//Juego JcE//
+    public static void JuegoJCE() {
+        
+    }
+    // #################################################################################################//Juego JcJ//
+    public static void JuegoJcJ() {
+        
+    }
     // #################################################################################################//menuUsuario//
     public static void menuUsuario(String user) throws FileNotFoundException {
+        @SuppressWarnings("resource") // Se usa solo para retirar el aviso del Scanner
         Scanner leer = new Scanner(System.in);
         String opcion;
 
-
-        System.out.println("Bienvenido "+"["+user+"]");
+        System.out.println("Bienvenido " + "[" + user + "]");
         System.out.println("");
         System.out.println("Opciones del menu de usuario: ");
         System.out.print("""
@@ -328,32 +371,35 @@ public class Ideas {
                 Ingrese su opcion ===> """);
         opcion = leer.next();
         opcion = opcion.toUpperCase();
-        if(opcion.equals("A")){
+        if (opcion.equals("A")) {
             System.out.print("""
-                Ingrese modo de juego
+                    Ingrese modo de juego
 
-                1 ==> JcE
-                2 ==> JcJ
+                    1 ==> JcE
+                    2 ==> JcJ
 
-                Ingrese su opcion ===> 
-                """);
+                    Ingrese su opcion ===>
+                    """);
             int modoJuego = leer.nextInt();
-        }
-        else if(opcion.equals("B")){
+            if(modoJuego == 1){
+                JuegoJCE();
+            }else if (modoJuego == 2){
+                JuegoJcJ();
+            }
+        } else if (opcion.equals("B")) {
 
-        }
-        else if(opcion.equals("C")){
-
-        }
-        else if(opcion.equals("D")){
-
-        }
-        else if(opcion.equals("E")){
+        } else if (opcion.equals("C")) {
+            System.out.println("Busqueda de estadisticas: ");
+            System.out.print("Ingrese el nombre del usuario que busca ===> ");
+            String busqUser = leer.next();
+            busqeEstadisticas(busqUser);
+        } else if (opcion.equals("D")) {
+            
+        } else if (opcion.equals("E")) {
             System.out.println("Ranking de los jugadores con mas exp: ");
             podio(user);
 
-        }
-        else if(opcion.equals("F")){
+        } else if (opcion.equals("F")) {
             System.out.println("Saliendo del menu jugador ... ");
         }
     }
@@ -400,38 +446,38 @@ public class Ideas {
             }
         } else {
             System.out.println("""
-                ░░█▀░░░░░░░░░░░▀▀███████░░░░
-                ░░█▌░░░░░░░░░░░░░░░▀██████░░░
-                ░█▌░░░░░░░░░░░░░░░░███████▌░░
-                ░█░░░░░░░░░░░░░░░░░████████░░
-                ▐▌░░░░░░░░░░░░░░░░░▀██████▌░░
-                ░▌▄███▌░░░░▀████▄░░░░▀████▌░░
-                ▐▀▀▄█▄░▌░░░▄██▄▄▄▀░░░░████▄▄░
-                ▐░▀░░═▐░░░░░░══░░▀░░░░▐▀░▄▀▌▌
-                ▐░░░░░▌░░░░░░░░░░░░░░░▀░▀░░▌▌
-                ▐░░░▄▀░░░▀░▌░░░░░░░░░░░░▌█░▌▌
-                ░▌░░▀▀▄▄▀▀▄▌▌░░░░░░░░░░▐░▀▐▐░
-                ░▌░░▌░▄▄▄▄░░░▌░░░░░░░░▐░░▀▐░░
-                ░█░▐▄██████▄░▐░░░░░░░░█▀▄▄▀░░
-                ░▐░▌▌░░░░░░▀▀▄▐░░░░░░█▌░░░░░░
-                ░░█░░▄▀▀▀▀▄░▄═╝▄░░░▄▀░▌░░░░░░
-                ░░░▌▐░░░░░░▌░▀▀░░▄▀░░▐░░░░░░░
-                ░░░▀▄░░░░░░░░░▄▀▀░░░░█░░░░░░░
-                ░░░▄█▄▄▄▄▄▄▄▀▀░░░░░░░▌▌░░░░░░
-                ░░▄▀▌▀▌░░░░░░░░░░░░░▄▀▀▄░░░░░
-                ▄▀░░▌░▀▄░░░░░░░░░░▄▀░░▌░▀▄░░░
-                ░░░░▌█▄▄▀▄░░░░░░▄▀░░░░▌░░░▌▄▄
-                ░░░▄▐██████▄▄░▄▀░░▄▄▄▄▌░░░░▄░
-                ░░▄▌████████▄▄▄███████▌░░░░░▄
-                ░▄▀░██████████████████▌▀▄░░░░
-                ▀░░░█████▀▀░░░▀███████░░░▀▄░░
-                ░░░░▐█▀░░░▐░░░░░▀████▌░░░░▀▄░
-                ░░░░░░▌░░░▐░░░░▐░░▀▀█░░░░░░░▀
-                ░░░░░░▐░░░░▌░░░▐░░░░░▌░░░░░░░
-                ░╔╗║░╔═╗░═╦═░░░░░╔╗░░╔═╗░╦═╗░
-                ░║║║░║░║░░║░░░░░░╠╩╗░╠═╣░║░║░
-                ░║╚╝░╚═╝░░║░░░░░░╚═╝░║░║░╩═╝░
-            """);
+                        ░░█▀░░░░░░░░░░░▀▀███████░░░░
+                        ░░█▌░░░░░░░░░░░░░░░▀██████░░░
+                        ░█▌░░░░░░░░░░░░░░░░███████▌░░
+                        ░█░░░░░░░░░░░░░░░░░████████░░
+                        ▐▌░░░░░░░░░░░░░░░░░▀██████▌░░
+                        ░▌▄███▌░░░░▀████▄░░░░▀████▌░░
+                        ▐▀▀▄█▄░▌░░░▄██▄▄▄▀░░░░████▄▄░
+                        ▐░▀░░═▐░░░░░░══░░▀░░░░▐▀░▄▀▌▌
+                        ▐░░░░░▌░░░░░░░░░░░░░░░▀░▀░░▌▌
+                        ▐░░░▄▀░░░▀░▌░░░░░░░░░░░░▌█░▌▌
+                        ░▌░░▀▀▄▄▀▀▄▌▌░░░░░░░░░░▐░▀▐▐░
+                        ░▌░░▌░▄▄▄▄░░░▌░░░░░░░░▐░░▀▐░░
+                        ░█░▐▄██████▄░▐░░░░░░░░█▀▄▄▀░░
+                        ░▐░▌▌░░░░░░▀▀▄▐░░░░░░█▌░░░░░░
+                        ░░█░░▄▀▀▀▀▄░▄═╝▄░░░▄▀░▌░░░░░░
+                        ░░░▌▐░░░░░░▌░▀▀░░▄▀░░▐░░░░░░░
+                        ░░░▀▄░░░░░░░░░▄▀▀░░░░█░░░░░░░
+                        ░░░▄█▄▄▄▄▄▄▄▀▀░░░░░░░▌▌░░░░░░
+                        ░░▄▀▌▀▌░░░░░░░░░░░░░▄▀▀▄░░░░░
+                        ▄▀░░▌░▀▄░░░░░░░░░░▄▀░░▌░▀▄░░░
+                        ░░░░▌█▄▄▀▄░░░░░░▄▀░░░░▌░░░▌▄▄
+                        ░░░▄▐██████▄▄░▄▀░░▄▄▄▄▌░░░░▄░
+                        ░░▄▌████████▄▄▄███████▌░░░░░▄
+                        ░▄▀░██████████████████▌▀▄░░░░
+                        ▀░░░█████▀▀░░░▀███████░░░▀▄░░
+                        ░░░░▐█▀░░░▐░░░░░▀████▌░░░░▀▄░
+                        ░░░░░░▌░░░▐░░░░▐░░▀▀█░░░░░░░▀
+                        ░░░░░░▐░░░░▌░░░▐░░░░░▌░░░░░░░
+                        ░╔╗║░╔═╗░═╦═░░░░░╔╗░░╔═╗░╦═╗░
+                        ░║║║░║░║░░║░░░░░░╠╩╗░╠═╣░║░║░
+                        ░║╚╝░╚═╝░░║░░░░░░╚═╝░║░║░╩═╝░
+                    """);
         }
         leer.close();
     }
