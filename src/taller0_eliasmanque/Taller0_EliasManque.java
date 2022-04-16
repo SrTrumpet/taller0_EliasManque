@@ -387,8 +387,11 @@ public class taller0_eliasmanque {
     // #################################################################################################//aprenderHechizo//
     public static void aprenderHechizo(String user) throws FileNotFoundException {
         File archJugador = new File("Jugadores.txt");
+        File hechizos = new File("Hechizos.txt");
         @SuppressWarnings("resource")
         Scanner arch = new Scanner(archJugador);
+        Scanner archHech = new Scanner(hechizos);
+        Scanner leer = new Scanner(System.in);
         int puntosExp = 0;
         while(arch.hasNext()){
             String [] partes = arch.next().split(",");
@@ -401,7 +404,21 @@ public class taller0_eliasmanque {
             }
         }
         if (puntosExp >= 1){
+            System.out.println("########################################################");
             System.out.println("Tienes "+ puntosExp +" puntos disponibles para aprender hechizos");
+            System.out.println("########################################################");
+            System.out.println("Cual quieres aprender? ");
+            System.out.println("Hechizos disponibles");
+            System.out.println("########################################################");
+            while(archHech.hasNext()){
+                String [] partes = archHech.next().split(",");
+                String name = partes[0];
+                String poder = partes[1];
+                System.out.println("""
+                    Nombre ==> %s     |  Poder ==>  %s
+                            """.formatted(name, poder));
+            }
+
         } else {
             System.out.println("De momento no puedes aprender mas hechizos!!");
         }
