@@ -11,7 +11,7 @@ import java.util.*;
  * @version 3.0
  */
 
-public class taller0_eliasmanque {
+public class taller0_eliasManque {
 
     // #################################################################################################//admin//
     public static void admin() throws IOException {
