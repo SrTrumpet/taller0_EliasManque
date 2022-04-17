@@ -1,1 +1,4 @@
 Meteo,9999
+ultraPower,9999999
+chan,9
+roto,1236598

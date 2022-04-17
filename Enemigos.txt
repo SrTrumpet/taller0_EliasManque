@@ -1,1 +1,5 @@
 Bahamut,30,20,S,50
+pao,78,985,A,32
+aliGator,45,39,C,12
+putIn,465,98,S,65
+choYo,78,985,A,32
