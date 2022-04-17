@@ -3,6 +3,14 @@ package taller0_eliasmanque;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Clase taller0_eliasManque
+ *
+ *
+ * @author Elias M. Olivares
+ * @version 3.0
+ */
+
 public class taller0_eliasmanque {
 
     // #################################################################################################//admin//
@@ -390,7 +398,9 @@ public class taller0_eliasmanque {
         File hechizos = new File("Hechizos.txt");
         @SuppressWarnings("resource")
         Scanner arch = new Scanner(archJugador);
+        @SuppressWarnings("resource")
         Scanner archHech = new Scanner(hechizos);
+        @SuppressWarnings("resource")
         Scanner leer = new Scanner(System.in);
         int puntosExp = 0;
         while(arch.hasNext()){
@@ -417,8 +427,8 @@ public class taller0_eliasmanque {
                 System.out.println("""
                     Nombre ==> %s     |  Poder ==>  %s
                             """.formatted(name, poder));
-            }
-
+            }String hechiz = leer.next();
+            System.out.println("Update para agregar hechizos (70% terminado) "+hechiz);
         } else {
             System.out.println("De momento no puedes aprender mas hechizos!!");
         }
@@ -469,9 +479,9 @@ public class taller0_eliasmanque {
             String busqUser = leer.next();
             busqeEstadisticas(busqUser);
         } else if (opcion.equals("D")) {
-        System.out.println("Ingrese el nombre de ususario a buscar ==> ");
-        String userHechizo = leer.next();
-        hechizoJugador(userHechizo);
+            System.out.println("Ingrese el nombre de ususario a buscar ==> ");
+            String userHechizo = leer.next();
+            hechizoJugador(userHechizo);
 
         } else if (opcion.equals("E")) {
             System.out.println("Ranking de los jugadores con mas exp: ");
